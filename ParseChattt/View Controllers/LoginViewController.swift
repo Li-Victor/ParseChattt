@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         
         PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: Error?) in
             if user != nil {
-                print("login")
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
             } else {
                 self.displayAlert(title: "Login Error", message: error?.localizedDescription ?? "ERROR")
             }
