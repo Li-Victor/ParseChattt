@@ -64,6 +64,9 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
 
         chatTableView.dataSource = self
+        chatTableView.rowHeight = UITableViewAutomaticDimension
+        chatTableView.estimatedRowHeight = 50
+        
         fetchChatMessages()
         
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.fetchChatMessages), userInfo: nil, repeats: true)

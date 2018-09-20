@@ -77,24 +77,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o7h-wp-ean">
-                                <rect key="frame" x="16" y="78" width="266" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o7h-wp-ean">
+                                <rect key="frame" x="16" y="80" width="275" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JGJ-hj-aiZ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="t15-Wa-v06"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIJ-5K-9gk">
-                                <rect key="frame" x="318" y="78" width="36" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KIJ-5K-9gk">
+                                <rect key="frame" x="315" y="80" width="36" height="30"/>
                                 <state key="normal" title="Send"/>
                                 <connections>
                                     <action selector="onSendMessage:" destination="91q-dv-fe5" eventType="touchUpInside" id="aUN-a8-QLC"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DH0-DS-1er">
-                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DH0-DS-1er">
+                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatCell" rowHeight="50" id="GQS-kf-ZPU" customClass="ChatCell" customModule="ParseChattt" customModuleProvider="target">
@@ -104,14 +105,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello There" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGc-It-urg">
-                                                    <rect key="frame" x="15" y="14" width="345" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello There" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yGc-It-urg">
+                                                    <rect key="frame" x="8" y="8" width="359" height="33.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="yGc-It-urg" secondAttribute="trailing" constant="8" id="NZV-JQ-dyj"/>
+                                                <constraint firstAttribute="bottom" secondItem="yGc-It-urg" secondAttribute="bottom" constant="8" id="PBY-vs-USV"/>
+                                                <constraint firstItem="yGc-It-urg" firstAttribute="top" secondItem="AGN-ZU-zqr" secondAttribute="top" constant="8" id="T00-17-1Cs"/>
+                                                <constraint firstItem="yGc-It-urg" firstAttribute="leading" secondItem="AGN-ZU-zqr" secondAttribute="leading" constant="8" id="aZG-dz-jGT"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="chatMessageLabel" destination="yGc-It-urg" id="32o-2H-y8T"/>
@@ -121,6 +127,17 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KIJ-5K-9gk" firstAttribute="leading" secondItem="o7h-wp-ean" secondAttribute="trailing" constant="24" id="26s-gT-PgO"/>
+                            <constraint firstItem="DH0-DS-1er" firstAttribute="bottom" secondItem="iCU-3Z-MQI" secondAttribute="bottom" id="7eG-6p-8fj"/>
+                            <constraint firstItem="o7h-wp-ean" firstAttribute="top" secondItem="iCU-3Z-MQI" secondAttribute="top" constant="16" id="LJa-k8-6gt"/>
+                            <constraint firstItem="iCU-3Z-MQI" firstAttribute="trailing" secondItem="KIJ-5K-9gk" secondAttribute="trailing" constant="24" id="MYY-sQ-yf2"/>
+                            <constraint firstItem="DH0-DS-1er" firstAttribute="leading" secondItem="iCU-3Z-MQI" secondAttribute="leading" id="WOW-aZ-aZe"/>
+                            <constraint firstItem="DH0-DS-1er" firstAttribute="trailing" secondItem="iCU-3Z-MQI" secondAttribute="trailing" id="oKx-MS-gj7"/>
+                            <constraint firstItem="DH0-DS-1er" firstAttribute="top" secondItem="o7h-wp-ean" secondAttribute="bottom" constant="8" id="vvU-cI-ltr"/>
+                            <constraint firstItem="KIJ-5K-9gk" firstAttribute="centerY" secondItem="o7h-wp-ean" secondAttribute="centerY" id="xCS-ae-5wC"/>
+                            <constraint firstItem="o7h-wp-ean" firstAttribute="leading" secondItem="iCU-3Z-MQI" secondAttribute="leading" constant="16" id="xXY-qp-P8e"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="iCU-3Z-MQI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="bsL-3P-ApD"/>
