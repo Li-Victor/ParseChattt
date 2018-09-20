@@ -11,11 +11,19 @@ import Parse
 
 class ChatCell: UITableViewCell {
 
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var chatMessageLabel: UILabel!
     
     var chatMessage: PFObject! {
         didSet {
             chatMessageLabel.text = chatMessage["text"] as? String
+            
+            if let user = chatMessage["user"] as? PFUser {
+                usernameLabel.text = user.username!
+            } else {
+                // No user found, set default username
+                usernameLabel.text = "🤖"
+            }
         }
     }
     

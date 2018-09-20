@@ -23,6 +23,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     @IBAction func onSendMessage(_ sender: Any) {
         let chatMessage = PFObject(className: "Message")
         chatMessage["text"] = chatMessageField.text ?? ""
+        chatMessage["user"] = PFUser.current()
         
         chatMessage.saveInBackground { (success: Bool, error: Error?) in
             if success {
@@ -53,6 +54,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     @objc func fetchChatMessages() {
         let query = PFQuery(className: "Message")
         query.addDescendingOrder("createdAt")
+        query.includeKey("user")
         query.findObjectsInBackground { (objects: [PFObject]?, error: Error?) in
             if let objects = objects {
                 self.chatMessages = objects
@@ -65,7 +67,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
 
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableViewAutomaticDimension
-        chatTableView.estimatedRowHeight = 50
+        chatTableView.estimatedRowHeight = 80
         
         fetchChatMessages()
         
