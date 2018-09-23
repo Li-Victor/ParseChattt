@@ -82,7 +82,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         let username = PFUser.current()!.username!
         userImageView.af_setImage(withURL: URL(string: "https://api.adorable.io/avatars/88/\(username)")!, completion: {(response) in
             
-            let userImage = response.value!.withRenderingMode(.alwaysOriginal)
+            let userImage = response.value!.roundedImage.withRenderingMode(.alwaysOriginal)
             
             let navUserImage = UIBarButtonItem(image: userImage, style: .plain, target: self, action: nil)
             self.navBar.leftBarButtonItem = navUserImage
@@ -108,5 +108,17 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension UIImage {
+    var roundedImage: UIImage {
+        let rect = CGRect(origin:CGPoint(x: 0, y: 0), size: self.size)
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 1)
+        UIBezierPath(
+            roundedRect: rect,
+            cornerRadius: self.size.height
+            ).addClip()
+        self.draw(in: rect)
+        return UIGraphicsGetImageFromCurrentImageContext()!
+    }
 }
