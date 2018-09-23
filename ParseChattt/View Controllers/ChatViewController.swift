@@ -67,6 +67,10 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(true)
+    }
+    
     @objc func onLogout() {
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }

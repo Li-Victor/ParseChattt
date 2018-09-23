@@ -23,10 +23,10 @@ class ChatCell: UITableViewCell {
             bubbleView.layer.cornerRadius = 16
             bubbleView.clipsToBounds = true
             
-            userImageView.layer.cornerRadius = 30
+            userImageView.layer.cornerRadius = 16
             userImageView.clipsToBounds = true
             
-            let urlString = "https://api.adorable.io/avatars/70"
+            let urlString = "https://api.adorable.io/avatars/32"
             
             if let user = chatMessage["user"] as? PFUser {
                 userImageView.af_setImage(withURL: URL(string: "\(urlString)/\(user.username!)")!)
