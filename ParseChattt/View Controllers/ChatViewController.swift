@@ -11,16 +11,19 @@ import Parse
 
 class ChatViewController: UIViewController, UITableViewDataSource {
     
-    var chatMessages: [PFObject] = [] {
+    private var chatMessages: [PFObject] = [] {
         didSet {
             chatTableView.reloadData()
+            refreshControl.endRefreshing()
         }
     }
     
-    @IBOutlet weak var chatTableView: UITableView!
-    @IBOutlet weak var chatMessageField: UITextField!
+    private var refreshControl: UIRefreshControl!
     
-    @IBAction func onSendMessage(_ sender: Any) {
+    @IBOutlet private weak var chatTableView: UITableView!
+    @IBOutlet private weak var chatMessageField: UITextField!
+    
+    @IBAction private func onSendMessage(_ sender: Any) {
         let chatMessage = PFObject(className: "Message")
         chatMessage["text"] = chatMessageField.text ?? ""
         chatMessage["user"] = PFUser.current()
@@ -34,7 +37,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    func displayAlert(title: String, message: String) {
+    private func displayAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(OKAction)
@@ -51,7 +54,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    @objc func fetchChatMessages() {
+    @objc private func fetchChatMessages() {
         let query = PFQuery(className: "Message")
         query.addDescendingOrder("createdAt")
         query.includeKey("user")
@@ -69,6 +72,11 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 80
         chatTableView.separatorStyle = .none
+        
+        // add refresh control on top of tableView
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ChatViewController.fetchChatMessages), for: .valueChanged)
+        chatTableView.insertSubview(refreshControl, at: 0)
         
         fetchChatMessages()
         
