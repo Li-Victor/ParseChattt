@@ -7,5 +7,6 @@ target 'ParseChattt' do
 
   # Pods for ParseChattt
   pod 'Parse'
+  pod 'AlamofireImage', '~> 3.3'
 
 end

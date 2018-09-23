@@ -8,11 +8,12 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
 class ChatCell: UITableViewCell {
 
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var bubbleView: UIView!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var chatMessageLabel: UILabel!
     
     var chatMessage: PFObject! {
@@ -22,11 +23,16 @@ class ChatCell: UITableViewCell {
             bubbleView.layer.cornerRadius = 16
             bubbleView.clipsToBounds = true
             
+            userImageView.layer.cornerRadius = 30
+            userImageView.clipsToBounds = true
+            
+            let urlString = "https://api.adorable.io/avatars/70"
+            
             if let user = chatMessage["user"] as? PFUser {
-                usernameLabel.text = user.username!
+                userImageView.af_setImage(withURL: URL(string: "\(urlString)/\(user.username!)")!)
             } else {
                 // No user found, set default username
-                usernameLabel.text = "🤖"
+                userImageView.af_setImage(withURL: URL(string: "\(urlString)")!)
             }
         }
     }
