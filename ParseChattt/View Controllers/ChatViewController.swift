@@ -101,7 +101,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         
         fetchChatMessages()
         
-        Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.fetchChatMessages), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.fetchChatMessages), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
