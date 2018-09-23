@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
 class ChatViewController: UIViewController, UITableViewDataSource {
     
@@ -20,6 +21,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
     
     private var refreshControl: UIRefreshControl!
     
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet private weak var chatTableView: UITableView!
     @IBOutlet private weak var chatMessageField: UITextField!
     
@@ -65,9 +67,28 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @objc func onLogout() {
+        NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // set up nav bar
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(ChatViewController.onLogout))
+        navBar.rightBarButtonItem = logoutBarButtonItem
+        
+        let userImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 88, height: 88))
+        let username = PFUser.current()!.username!
+        userImageView.af_setImage(withURL: URL(string: "https://api.adorable.io/avatars/88/\(username)")!, completion: {(response) in
+            
+            let userImage = response.value!.withRenderingMode(.alwaysOriginal)
+            
+            let navUserImage = UIBarButtonItem(image: userImage, style: .plain, target: self, action: nil)
+            self.navBar.leftBarButtonItem = navUserImage
+            
+        })
+        
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 80
@@ -80,7 +101,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         
         fetchChatMessages()
         
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.fetchChatMessages), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(self.fetchChatMessages), userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {

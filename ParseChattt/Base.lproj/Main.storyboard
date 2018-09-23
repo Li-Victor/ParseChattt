@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="ParseChattt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="ParseChattt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,6 +167,7 @@
                     <connections>
                         <outlet property="chatMessageField" destination="o7h-wp-ean" id="DZo-Z8-13u"/>
                         <outlet property="chatTableView" destination="DH0-DS-1er" id="29b-22-hfa"/>
+                        <outlet property="navBar" destination="bsL-3P-ApD" id="0Wh-XX-YP0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clh-1E-8xT" userLabel="First Responder" sceneMemberID="firstResponder"/>
