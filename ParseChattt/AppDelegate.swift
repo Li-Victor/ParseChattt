@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Welcome back \(currentUser.username!) 😀")
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatViewController")
-            window?.rootViewController = chatViewController
+            let navController = storyboard.instantiateViewController(withIdentifier: "navController")
+            window?.rootViewController = navController
         }
         
         return true
