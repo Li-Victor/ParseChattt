@@ -68,6 +68,7 @@ class ChatViewController: UIViewController, UITableViewDataSource {
         chatTableView.dataSource = self
         chatTableView.rowHeight = UITableViewAutomaticDimension
         chatTableView.estimatedRowHeight = 80
+        chatTableView.separatorStyle = .none
         
         fetchChatMessages()
         

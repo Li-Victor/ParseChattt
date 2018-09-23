@@ -11,12 +11,16 @@ import Parse
 
 class ChatCell: UITableViewCell {
 
+    @IBOutlet weak var bubbleView: UIView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var chatMessageLabel: UILabel!
     
     var chatMessage: PFObject! {
         didSet {
             chatMessageLabel.text = chatMessage["text"] as? String
+            
+            bubbleView.layer.cornerRadius = 16
+            bubbleView.clipsToBounds = true
             
             if let user = chatMessage["user"] as? PFUser {
                 usernameLabel.text = user.username!
